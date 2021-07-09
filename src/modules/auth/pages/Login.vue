@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Login',
   data: () => ({
@@ -29,7 +30,11 @@ export default {
       password: ''
     }
   }),
+  created () {
+    this.ActionSetUser({ name: 'Euler', email: 'teste@teste.com' })
+  },
   methods: {
+    ...mapActions('auth', ['ActionSetUser']),
     submit () {
       console.log(this.form)
     }
