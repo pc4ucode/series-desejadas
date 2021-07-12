@@ -30,13 +30,17 @@ export default {
       password: ''
     }
   }),
-  created () {
-    this.ActionSetUser({ name: 'Euler', email: 'teste@teste.com' })
-  },
   methods: {
-    ...mapActions('auth', ['ActionSetUser']),
-    submit () {
-      console.log(this.form)
+    ...mapActions('auth', ['ActionDoLogin']),
+    async submit () {
+      try {
+        await this.ActionDoLogin(this.form)
+
+        this.$router.push({ name: 'home' })
+      } catch (e) {
+        console.log(e)
+        alert(e.data ? e.data.message : 'Não foi possivel fazer login')
+      }
     }
   }
 }
