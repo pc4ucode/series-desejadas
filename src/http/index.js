@@ -12,5 +12,11 @@ Object.keys(services).map(service => {
   services[service] = Vue.resource('', {}, services[service])
 })
 
-export { http }
+const setBearerToken = token => {
+  // eslint-disable-next-line no-empty
+  http.headers.common.Authorization = `Bearer ${token}`
+  // http.headers.common['Authorization'] = `Bearer ${token}`
+}
+
+export { http, setBearerToken }
 export default services
